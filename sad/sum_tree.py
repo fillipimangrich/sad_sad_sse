@@ -20,11 +20,11 @@ signal = 'signal '
 
 c=0
 for i in range(1,log+1):
-    for j in range(1,int(m/(2*i))):
+    for j in range(1,int(m/(2**i))):
         c+=1
         signal += f'reg{c}, '
     c+=1
-    signal += f'reg{c} : std_logic_vector({m+i} downto 0);\n'
+    signal += f'reg{c} : std_logic_vector({8+i} downto 0);\n'
     code += signal
     signal = 'signal '
 
@@ -34,10 +34,10 @@ code += ("BEGIN\n"
 "       IF (rst = 1)THEN\n"
 "           q <= (others => '0');\n"
 "       ELSIF (clk'EVENT AND clk = '1' AND enb = '1') THEN\n")
-
+c= 0
 for i in range(1,int(m/2)+1):
-    k2=m*(i-1)*2
-    code+=f"            reg{i} <= '0'&d({(k2+15)} downto {k2+8}) + '0'&d({k2+7} downto {k2});\n"
+    code+=f"            reg{i} <= '0'&d({(c+15)} downto {c+8}) + '0'&d({c+7} downto {c});\n"
+    c+=16
 
 c=0
 for i in range(int(m/2)+1,m):

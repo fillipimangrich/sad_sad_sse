@@ -9,8 +9,8 @@ end sum_tree;
 
 architecture arch of sum_tree is
 signal ZEROS : std_logic_vector(N - 1 DOWNTO 0) := (OTHERS => '0');
-signal reg1, reg2 : std_logic_vector(5 downto 0);
-signal reg3 : std_logic_vector(6 downto 0);
+signal reg1, reg2 : std_logic_vector(9 downto 0);
+signal reg3 : std_logic_vector(10 downto 0);
 BEGIN
    PROCESS(clk)
    BEGIN
@@ -19,7 +19,7 @@ BEGIN
            q <= (others => '0');
        ELSIF (clk'EVENT AND clk = '1' AND enb = '1') THEN
             reg1 <= '0'&d(15 downto 8) + '0'&d(7 downto 0);
-            reg2 <= '0'&d(23 downto 16) + '0'&d(15 downto 8);
+            reg2 <= '0'&d(31 downto 24) + '0'&d(23 downto 16);
             reg3 <= reg3 + reg1 + reg2;
         END IF;
 	END PROCESS;
