@@ -1,6 +1,6 @@
 from math import log2
 
-m = 8
+m = 128
 log = int(log2(m))
 code = ("library IEEE;\n"
 "use ieee.std_logic_1164.all;\n"
@@ -19,7 +19,7 @@ f"       q : OUT std_logic_vector({int(log2(m**2)+7)} DOWNTO 0));\n"
 signal = 'signal '
 
 c=0
-for i in range(1,log):
+for i in range(1,log+1):
     for j in range(1,int(m/(2*i))):
         c+=1
         signal += f'reg{c}, '
@@ -36,9 +36,20 @@ code += ("BEGIN\n"
 "       ELSIF (clk'EVENT AND clk = '1' AND enb = '1') THEN\n")
 
 for i in range(1,int(m/2)+1):
-    k1=m*i*2
     k2=m*(i-1)*2
-    code+=f"            reg{i}<= '0'&d({(k1-1)} downto {k2+8}) + '0'&d({k2+7} downto {k2});\n"
+    code+=f"            reg{i} <= '0'&d({(k2+15)} downto {k2+8}) + '0'&d({k2+7} downto {k2});\n"
+
+c=0
+for i in range(int(m/2)+1,m):
+    if i != m-1:
+        code+=f"            reg{i} <= reg{c+1} + reg{c+2};\n"
+    else:
+        code+=(f"            reg{i} <= reg{i} + reg{c+1} + reg{c+2};\n"
+                "        END IF;\n"
+                "	END PROCESS;\n"
+                f"q <= reg{i};\n"
+                "END arch;")
+    c+=2
 
 
 arquivo = open(f'sum_tree_{m}pixels.vhd','w')
