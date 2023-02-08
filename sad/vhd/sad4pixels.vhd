@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 entity sad4pixels is
-   PORT (clk, enb, rst : IN STD_LOGIC;
+   PORT (
        v1,v2 : IN std_logic_vector(31 DOWNTO 0);
        q : OUT std_logic_vector(31 DOWNTO 0));
 end sad4pixels;
