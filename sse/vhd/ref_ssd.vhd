@@ -2,15 +2,15 @@ library IEEE;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
-entity sad4pixels is
+entity ssd4pixels is
    PORT (
        v1,v2 : IN std_logic_vector(31 DOWNTO 0);
        q : OUT std_logic_vector(63 DOWNTO 0));
-end sad4pixels;
+end ssd4pixels;
 
-architecture arch of sad4pixels is
-signal s1, s2, s3, s4 : std_logic_vector(15 downto 0);
-type rom_type is array (0 to 127) of std_logic_vector(15 downto 0);
+architecture arch of ssd4pixels is
+  signal s1,s2,s3,s4 : std_logic_vector(15 downto 0);
+  type rom_type is array (0 to 127) of std_logic_vector(15 downto 0);
   signal square: rom_type := (
     "0000000000000000",
     "0000000000000001",
@@ -140,13 +140,14 @@ type rom_type is array (0 to 127) of std_logic_vector(15 downto 0);
     "0011110100001001",
     "0011111000000100",
     "0011111100000001");
-begin
- s1<= std_logic_vector(abs(signed(v1(7 downto 0)) - signed(v2(7 downto 0))));
- s2<= std_logic_vector(abs(signed(v1(15 downto 8)) - signed(v2(15 downto 8))));
- s3<= std_logic_vector(abs(signed(v1(23 downto 16)) - signed(v2(23 downto 16))));
- s4<= std_logic_vector(abs(signed(v1(31 downto 24)) - signed(v2(31 downto 24))));
+  begin
+
+  s1<= std_logic_vector(abs(signed(v1(7 downto 0)) - signed(v2(7 downto 0))));
+  s2 <= std_logic_vector(abs(signed(v1(15 downto 8)) - signed(v2(15 downto 8))));
+  s3 <= std_logic_vector(abs(signed(v1(23 downto 16)) - signed(v2(23 downto 16))));
+  s4 <= std_logic_vector(abs(signed(v1(31 downto 24)) - signed(v2(31 downto 24))));
   q(15 downto 0) <= s1*s1 when s1 > 128 else square(to_integer(unsigned(s1)));
-  q(31 downto 16) <= s2*s2 when s1 > 128 else square(to_integer(unsigned(s2)));
-  q(47 downto 32) <= s3*s3 when s1 > 128 else square(to_integer(unsigned(s3)));
-  q(63 downto 48) <= s4*s4 when s1 > 128 else square(to_integer(unsigned(s4)));
+  q(31 downto 16) <= s2*s2 when s2 > 128 else square(to_integer(unsigned(s2)));
+  q(47 downto 32) <= s3*s3 when s3 > 128 else square(to_integer(unsigned(s3)));
+  q(63 downto 48) <= s4*s4 when s4 > 128 else square(to_integer(unsigned(s4)));
 end arch;

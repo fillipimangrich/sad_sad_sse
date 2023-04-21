@@ -2,14 +2,14 @@ library IEEE;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
-entity sad4pixels is
+entity sad16pixels is
    PORT (
-       v1,v2 : IN std_logic_vector(31 DOWNTO 0);
-       q : OUT std_logic_vector(63 DOWNTO 0));
-end sad4pixels;
+       v1,v2 : IN std_logic_vector(127 DOWNTO 0);
+       q : OUT std_logic_vector(255 DOWNTO 0));
+end sad16pixels;
 
-architecture arch of sad4pixels is
-signal s1, s2, s3, s4 : std_logic_vector(15 downto 0);
+architecture arch of sad16pixels is
+signal s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16 : std_logic_vector(15 downto 0);
 type rom_type is array (0 to 127) of std_logic_vector(15 downto 0);
   signal square: rom_type := (
     "0000000000000000",
@@ -145,8 +145,32 @@ begin
  s2<= std_logic_vector(abs(signed(v1(15 downto 8)) - signed(v2(15 downto 8))));
  s3<= std_logic_vector(abs(signed(v1(23 downto 16)) - signed(v2(23 downto 16))));
  s4<= std_logic_vector(abs(signed(v1(31 downto 24)) - signed(v2(31 downto 24))));
+ s5<= std_logic_vector(abs(signed(v1(39 downto 32)) - signed(v2(39 downto 32))));
+ s6<= std_logic_vector(abs(signed(v1(47 downto 40)) - signed(v2(47 downto 40))));
+ s7<= std_logic_vector(abs(signed(v1(55 downto 48)) - signed(v2(55 downto 48))));
+ s8<= std_logic_vector(abs(signed(v1(63 downto 56)) - signed(v2(63 downto 56))));
+ s9<= std_logic_vector(abs(signed(v1(71 downto 64)) - signed(v2(71 downto 64))));
+ s10<= std_logic_vector(abs(signed(v1(79 downto 72)) - signed(v2(79 downto 72))));
+ s11<= std_logic_vector(abs(signed(v1(87 downto 80)) - signed(v2(87 downto 80))));
+ s12<= std_logic_vector(abs(signed(v1(95 downto 88)) - signed(v2(95 downto 88))));
+ s13<= std_logic_vector(abs(signed(v1(103 downto 96)) - signed(v2(103 downto 96))));
+ s14<= std_logic_vector(abs(signed(v1(111 downto 104)) - signed(v2(111 downto 104))));
+ s15<= std_logic_vector(abs(signed(v1(119 downto 112)) - signed(v2(119 downto 112))));
+ s16<= std_logic_vector(abs(signed(v1(127 downto 120)) - signed(v2(127 downto 120))));
   q(15 downto 0) <= s1*s1 when s1 > 128 else square(to_integer(unsigned(s1)));
   q(31 downto 16) <= s2*s2 when s1 > 128 else square(to_integer(unsigned(s2)));
   q(47 downto 32) <= s3*s3 when s1 > 128 else square(to_integer(unsigned(s3)));
   q(63 downto 48) <= s4*s4 when s1 > 128 else square(to_integer(unsigned(s4)));
+  q(79 downto 64) <= s5*s5 when s1 > 128 else square(to_integer(unsigned(s5)));
+  q(95 downto 80) <= s6*s6 when s1 > 128 else square(to_integer(unsigned(s6)));
+  q(111 downto 96) <= s7*s7 when s1 > 128 else square(to_integer(unsigned(s7)));
+  q(127 downto 112) <= s8*s8 when s1 > 128 else square(to_integer(unsigned(s8)));
+  q(143 downto 128) <= s9*s9 when s1 > 128 else square(to_integer(unsigned(s9)));
+  q(159 downto 144) <= s10*s10 when s1 > 128 else square(to_integer(unsigned(s10)));
+  q(175 downto 160) <= s11*s11 when s1 > 128 else square(to_integer(unsigned(s11)));
+  q(191 downto 176) <= s12*s12 when s1 > 128 else square(to_integer(unsigned(s12)));
+  q(207 downto 192) <= s13*s13 when s1 > 128 else square(to_integer(unsigned(s13)));
+  q(223 downto 208) <= s14*s14 when s1 > 128 else square(to_integer(unsigned(s14)));
+  q(239 downto 224) <= s15*s15 when s1 > 128 else square(to_integer(unsigned(s15)));
+  q(255 downto 240) <= s16*s16 when s1 > 128 else square(to_integer(unsigned(s16)));
 end arch;

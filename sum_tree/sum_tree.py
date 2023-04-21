@@ -54,6 +54,6 @@ for i in range(int(m/2)+1,m):
     c+=2
 
 
-arquivo = open(f'vhd/sum_tree_{m}pixels.vhd','w')
+arquivo = open(f'vhd/sum_tree{m}pixels.vhd','w')
 arquivo.write(code)
 arquivo.close()
