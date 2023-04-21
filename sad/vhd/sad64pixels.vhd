@@ -5,7 +5,7 @@ use ieee.std_logic_unsigned.all;
 entity sad64pixels is
    PORT (
        v1,v2 : IN std_logic_vector(511 DOWNTO 0);
-       q : OUT std_logic_vector(13 DOWNTO 0));
+       q : OUT std_logic_vector(511 DOWNTO 0));
 end sad64pixels;
 
 architecture arch of sad64pixels is

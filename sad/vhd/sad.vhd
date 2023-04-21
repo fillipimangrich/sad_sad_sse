@@ -13,7 +13,7 @@ architecture arch of sad is
 COMPONENT sad4pixels
     PORT(
         v1,v2 : IN std_logic_vector(31 DOWNTO 0);
-        q : OUT std_logic_vector(9 DOWNTO 0));
+        q : OUT std_logic_vector(31 DOWNTO 0));
 END COMPONENT;
 
 COMPONENT sum_tree_4pixels
