@@ -2,13 +2,13 @@ library IEEE;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
-entity sad4pixels is
+entity ssd4pixels is
    PORT (
        v1,v2 : IN std_logic_vector(31 DOWNTO 0);
        q : OUT std_logic_vector(63 DOWNTO 0));
-end sad4pixels;
+end ssd4pixels;
 
-architecture arch of sad4pixels is
+architecture arch of ssd4pixels is
   signal s1,s2,s3,s4 : std_logic_vector(63 downto 0);
   type rom_type is array (0 to 127) of std_logic_vector(15 downto 0);
   signal square: rom_type := (

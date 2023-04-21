@@ -1,7 +1,7 @@
 
 from math import log2
 
-m = 4
+m = 128
 log = int(log2(m))
 code = ("library IEEE;\n"
 "use ieee.std_logic_1164.all;\n"
@@ -10,7 +10,7 @@ code = ("library IEEE;\n"
 f"entity sad{m}pixels is\n"
 f"   PORT (\n"
 f"       v1,v2 : IN std_logic_vector({(m*8)-1} DOWNTO 0);\n"
-f"       q : OUT std_logic_vector({(m*8)-1} DOWNTO 0));\n"
+f"       q : OUT std_logic_vector({(log)+7} DOWNTO 0));\n"
 f"end sad{m}pixels;\n\n"
 f"architecture arch of sad{m}pixels is\n"
 f"begin\n"

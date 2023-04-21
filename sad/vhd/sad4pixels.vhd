@@ -1,10 +1,11 @@
 library IEEE;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
 entity sad4pixels is
    PORT (
        v1,v2 : IN std_logic_vector(31 DOWNTO 0);
-       q : OUT std_logic_vector(31 DOWNTO 0));
+       q : OUT std_logic_vector(9 DOWNTO 0));
 end sad4pixels;
 
 architecture arch of sad4pixels is
