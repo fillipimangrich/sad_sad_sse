@@ -6,12 +6,12 @@ code = ("library IEEE;\n"
 "use ieee.std_logic_1164.all;\n"
 "use ieee.std_logic_arith.all;\n"
 "use ieee.std_logic_unsigned.all;\n"
-f"entity sum_tree{m}pixels is\n"
+f"entity sum_tree_ssd{m}pixels is\n"
 f"   PORT (clk, enb, rst : IN STD_LOGIC;\n"
 f"       d : IN std_logic_vector({(2*m*8)-1} DOWNTO 0);\n"
 f"       q : OUT std_logic_vector({int(log2(m)+15)} DOWNTO 0));\n"
-f"end sum_tree{m}pixels;\n\n"
-f"architecture arch of sum_tree{m}pixels is\n"
+f"end sum_tree_ssd{m}pixels;\n\n"
+f"architecture arch of sum_tree_ssd{m}pixels is\n"
 )
 signal = 'signal '
 
