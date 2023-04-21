@@ -2,36 +2,36 @@ library IEEE;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
-entity sad is
+entity sad8 is
    PORT (clk, enb, rst : IN STD_LOGIC;
        v1,v2 : IN std_logic_vector(31 DOWNTO 0);
-       q : OUT std_logic_vector(9 DOWNTO 0));
-end sad;
+       q : OUT std_logic_vector(10 DOWNTO 0));
+end sad8;
 
-architecture arch of sad is
+architecture arch of sad8 is
 
-COMPONENT sad4pixels
+COMPONENT sad8pixels
     PORT(
-        v1,v2 : IN std_logic_vector(31 DOWNTO 0);
-        q : OUT std_logic_vector(31 DOWNTO 0));
+        v1,v2 : IN std_logic_vector(63 DOWNTO 0);
+        q : OUT std_logic_vector(63 DOWNTO 0));
 END COMPONENT;
 
-COMPONENT sum_tree_4pixels
+COMPONENT sum_tree_8pixels
     PORT(clk, enb, rst : IN STD_LOGIC;
-    d : IN std_logic_vector(31 DOWNTO 0);
-    q : OUT std_logic_vector(9 DOWNTO 0));
+    d : IN std_logic_vector(63 DOWNTO 0);
+    q : OUT std_logic_vector(10 DOWNTO 0));
 END COMPONENT;
 
-signal saida_sad: std_logic_vector(31 DOWNTO 0);
-signal saida_sum: std_logic_vector(9 DOWNTO 0);
+signal saida_sad: std_logic_vector(63 DOWNTO 0);
+signal saida_sum: std_logic_vector(10 DOWNTO 0);
 BEGIN
-b2v_inst : sad4pixels
+b2v_inst : sad8pixels
 PORT MAP(v1 => v1,
          v2 => v2,
          q => saida_sad);
 
 
-b2v_inst1 : sum_tree_4pixels
+b2v_inst1 : sum_tree_8pixels
 PORT MAP(clk => clk,
          enb => enb,
          rst => rst,

@@ -15,6 +15,7 @@ f"end sad{m}pixels;\n\n"
 f"architecture arch of sad{m}pixels is\n"
 f"begin\n"
 )
+
 for i in range(0,m):
     code += f"  q({(i*8)+7} downto {i*8}) <= std_logic_vector(abs(signed(v1({(i*8)+7} downto {i*8})) - signed(v2({(i*8)+7} downto {i*8}))));\n"
 
