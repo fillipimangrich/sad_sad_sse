@@ -1,7 +1,6 @@
 library IEEE;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;use ieee.std_logic_unsigned.all;
 entity sad8pixels is
    PORT (
        v1,v2 : IN std_logic_vector(63 DOWNTO 0);
@@ -9,6 +8,7 @@ entity sad8pixels is
 end sad8pixels;
 
 architecture arch of sad8pixels is
+begin
   q(7 downto 0) <= std_logic_vector(abs(signed(v1(7 downto 0)) - signed(v2(7 downto 0))));
   q(15 downto 8) <= std_logic_vector(abs(signed(v1(15 downto 8)) - signed(v2(15 downto 8))));
   q(23 downto 16) <= std_logic_vector(abs(signed(v1(23 downto 16)) - signed(v2(23 downto 16))));

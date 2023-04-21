@@ -2,13 +2,13 @@ library IEEE;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
-entity sum_tree4pixels is
+entity sad is
    PORT (clk, enb, rst : IN STD_LOGIC;
        d : IN std_logic_vector(31 DOWNTO 0);
        q : OUT std_logic_vector(9 DOWNTO 0));
-end sum_tree4pixels;
+end sad;
 
-architecture arch of sum_tree4pixels is
+architecture arch of sad is
 signal reg1, reg2 : std_logic_vector(8 downto 0);
 signal reg3 : std_logic_vector(9 downto 0);
 BEGIN
@@ -25,6 +25,6 @@ BEGIN
             reg2 <= ('0'&d(31 downto 24)) + ('0'&d(23 downto 16));
             reg3 <= reg3 + ('0'&reg1) + ('0'&reg2);
         END IF;
-          q <= reg3;
+        q <= reg3;
 	END PROCESS;
 END arch;

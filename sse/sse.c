@@ -9,10 +9,11 @@ void fsad(int arr_1[][N], int arr_2[][N])
 {
 	int i, j;
     int sad = 0;
-
+    int x;
 	for (i = 0; i < N; i++){
         for (j = 0; j < N; j++){
-            sad += pow((arr_1[i][j] - arr_2[i][j]),2);
+            x = arr_1[i][j] - arr_2[i][j];
+            sad += x*x;
         }
     }
 

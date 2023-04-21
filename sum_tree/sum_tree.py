@@ -1,6 +1,6 @@
 from math import log2
 
-m = 128
+m = 4
 log = int(log2(m))
 code = ("library IEEE;\n"
 "use ieee.std_logic_1164.all;\n"
@@ -21,7 +21,7 @@ for i in range(1,log+1):
         c+=1
         signal += f'reg{c}, '
     c+=1
-    signal += f'reg{c} : std_logic_vector({8+i} downto 0);\n'
+    signal += f'reg{c} : std_logic_vector({7+i} downto 0);\n'
     code += signal
     signal = 'signal '
 
@@ -29,11 +29,11 @@ for i in range(1,log+1):
 code += ("BEGIN\n"
 "   PROCESS(clk)\n"
 "   BEGIN\n\n"
-"       IF (rst = 1)THEN\n"
+"       IF (rst = '1')THEN\n"
 "           q <= (others => '0');\n")
 
-for i in range(m-1):
-    code += f"           reg{i} = (others => '0');\n"
+for i in range(1,m):
+    code += f"           reg{i} <= (others => '0');\n"
 
 code +="       ELSIF (clk'EVENT AND clk = '1' AND enb = '1') THEN\n"
 c= 0
