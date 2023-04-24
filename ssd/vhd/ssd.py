@@ -1,7 +1,7 @@
 
 from math import log2
 
-m = 128
+m = 4
 log = int(log2(m))
 code = ("library IEEE;\n"
 "use ieee.std_logic_1164.all;\n"
@@ -25,7 +25,7 @@ for i in range(0,m):
 
 
 for i in range(0,m):
-    code += f"  q({((i+1)*16)-1} downto {i*16}) <= s{i+1}*s{i+1} when s1 > 128 else square(to_integer(unsigned(s{i+1})));\n"
+    code += f"  q({((i+1)*16)-1} downto {i*16}) <= s{i+1}*s{i+1} when s{i+1} > 127 else square(to_integer(unsigned(s{i+1})));\n"
 
 code += 'end arch;'
 
