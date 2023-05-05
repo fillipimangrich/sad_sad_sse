@@ -1,6 +1,6 @@
 from math import log2
 
-m = 4
+m = 128
 log = int(log2(m))
 code = ("library IEEE;\n"
 "use ieee.std_logic_1164.all;\n"
