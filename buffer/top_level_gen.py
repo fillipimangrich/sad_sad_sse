@@ -1,6 +1,6 @@
 from math import ceil, log2
 
-N = 128
+N = 4
 mode = 'ssd'
 if mode == 'sad':
 	N_bits_out_minus1 = int(ceil(log2(N) + 7))
