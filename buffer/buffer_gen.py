@@ -1,6 +1,6 @@
 from math import log2, ceil
 
-N = 64
+N = 8
 
 row_counter_size = int(ceil(log2(N)))
 
