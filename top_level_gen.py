@@ -1,12 +1,12 @@
 from math import ceil, log2
 
-N = 8
-mode = 'sad'
+N = 128
+mode = 'ssd'
 if mode == 'sad':
 	N_bits_out_minus1 = int(ceil(log2(N) + 7))
 elif mode == 'satd':
 	N_bits_out_minus1 = int(ceil(log2(N) + 7))
-else: # 'ssd'
+else: 
 	N_bits_out_minus1 = int(ceil(log2(N) + 15))
 
 
@@ -51,7 +51,7 @@ for i in range(N-1):
 	print("row_out_cand%d & " % (i), end = "")
 print("row_out_cand%d;\n" % (N-1))
 
-print("""U_BUFF: entity work.io_buffer port map(clk, rst, wr_er, data_in_orig, data_in_cand,""")
+print("""U_BUFF: entity work.io_buffer port map(clk, rst, wr_en, data_in_orig, data_in_cand,""")
 
 print("\t\t\t\t", end="")
 for i in range(N):

@@ -1,17 +1,13 @@
 from math import log2, ceil
 
-N = 8
+N = 64
 
 row_counter_size = int(ceil(log2(N)))
 
 
 pre_text = """library ieee;
-
 use ieee.std_logic_1164.all;
-
 use ieee.numeric_std.all;
-
-​
 
 entity io_buffer is
 
