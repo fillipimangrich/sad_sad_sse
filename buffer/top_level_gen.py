@@ -1,7 +1,7 @@
 from math import ceil, log2
 
-N = 4
-mode = 'ssd'
+N = 16
+mode = 'sad'
 if mode == 'sad':
 	N_bits_out_minus1 = int(ceil(log2(N) + 7))
 elif mode == 'satd':
